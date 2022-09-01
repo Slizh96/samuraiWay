@@ -8,3 +8,9 @@
     grid-template-rows: 60px 1fr; /*распределяем  сколько занимает 1 строка, первая  60пх вторая остальное*/
     grid-template-columns: 2fr 10fr; /*распределяем  сколько занимает столбец*/
 }
+
+.appWrapperContent{
+    grid-area: c;
+    background-color: darkgoldenrod;
+
+}
