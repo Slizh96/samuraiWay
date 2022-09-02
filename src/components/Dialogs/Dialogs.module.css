@@ -5,7 +5,15 @@
 }
 
 .dialogsItem{
+    color: violet;
+}
 
+.dialogs a.active{
+text-decoration: none;
+    color: bisque;
+}
+.dialogs a{
+text-decoration: none;
 }
 
 .dialog{
