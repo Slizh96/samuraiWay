@@ -10,10 +10,12 @@ export type StateType = {
 }
 type profilePageType = {
     post: PostDataType[]
+    newPostText: string
 }
 type MessagePageType = {
     message: MessageItemPropsType[],
-    dialog: DialogsItemPropsType[]
+    dialog: DialogsItemPropsType[],
+    mewMessageText: string
 }
 export  type friendsBlockType = {
     src: string
@@ -28,7 +30,8 @@ export let state: StateType = {
             {post: 'Great. Thanks, and you?', like: 65, id: 3},
             {post: 'I am lucky', like: 21, id: 4},
             {post: 'Good luck', like: 48, id: 5},
-        ]
+        ],
+        newPostText: ''
     },
     messagePage: {
         message: [
@@ -46,7 +49,8 @@ export let state: StateType = {
             {id: 4, name: 'Alex'},
             {id: 5, name: 'Max'},
             {id: 6, name: 'Tim'},
-        ]
+        ],
+        mewMessageText: ''
     },
     friendsBlock: [
         {src: 'https://mir-avatarok.3dn.ru/_si/0/03342719.jpg', name: 'Roni'},
@@ -55,12 +59,36 @@ export let state: StateType = {
     ]
 }
 
-export let addPost = (postMessage: string) => {
+export let addPost = () => {
     let newPost: PostDataType = {
-        post: postMessage,
+        post: state.profilePage.newPostText,
         like: 25,
         id: 1
     };
     state.profilePage.post.push(newPost)
+    state.profilePage.newPostText = '';
     rerenderEntireTree(state);
+}
+
+export let updatePostText = (newPostText: string) => {
+    state.profilePage.newPostText = newPostText
+    rerenderEntireTree(state);
+    // newPostText = ''
+}
+
+
+export let addMessage = () => {
+    let newMessage: MessageItemPropsType = {
+        message: state.messagePage.mewMessageText,
+        id: 1
+    };
+    state.messagePage.message.push(newMessage)
+    state.messagePage.mewMessageText = '';
+    rerenderEntireTree(state);
+}
+
+export let updateMessageText = (newMessageText: string) => {
+    state.messagePage.mewMessageText = newMessageText
+    rerenderEntireTree(state);
+    // newMessageText = ''
 }

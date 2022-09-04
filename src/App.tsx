@@ -13,7 +13,10 @@ import {StateType} from "./redux/state";
 
 export type PropsType = {
     state: StateType
-    addPost: (postMessage: string) =>void
+    addPost: () =>void
+    updatePostText: (newPostText:string)=>void
+    addMessage: () =>void
+    updateMessageText: (newMessageText:string)=>void
 }
 
 function App(props: PropsType) {
@@ -24,11 +27,18 @@ function App(props: PropsType) {
             <div className='appWrapperContent'>
                 {/*<Route path='/dialogs' component={Dialogs}/>*/}
                 {/*<Route path='/profile' component={Profile}/>*/}
-                <Route path='/dialogs' render={() => <Dialogs dialogsData={props.state.messagePage.dialog}
-                                                              messageData={props.state.messagePage.message}/>}/>
+                <Route path='/dialogs' render={() => <Dialogs
+                    dialogsData={props.state.messagePage.dialog}
+                    messageData={props.state.messagePage.message}
+                    newMessageText={props.state.messagePage.mewMessageText}
+                    addMessage={props.addMessage}
+                    updateMessageText={props.updateMessageText}
+                />}/>
                 <Route path='/profile' render={() => <Profile
                     postData={props.state.profilePage.post}
+                    newPostText={props.state.profilePage.newPostText}
                     addPost={props.addPost}
+                    updatePostText={props.updatePostText}
                 />}/>
                 <Route path='/news' component={News}/>
                 <Route path='/music' component={Music}/>

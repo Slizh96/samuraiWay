@@ -6,17 +6,22 @@ import {MessageItem, MessageItemPropsType} from "./Message/Message";
 type PropsType = {
     dialogsData: Array<DialogsItemPropsType>
     messageData: Array<MessageItemPropsType>
+    newMessageText: string
+    addMessage: () => void
+    updateMessageText: (newMessageText: string) => void
 }
 
-export const Dialogs = (props:PropsType) => {
+export const Dialogs = (props: PropsType) => {
 
-    let newMessage:any=React.createRef();
+    let newMessage: any = React.createRef();
 
-    let sendMessage=()=>{
-        let messageText=newMessage.current.value;
-        alert(messageText)
+    let sendMessage = () => {
+        props.addMessage()
     }
 
+    let onChangeHandler = ()=>{
+        props.updateMessageText(newMessage.current.value)
+    }
 
     return (
         <div className={s.dialogs}>
@@ -26,9 +31,13 @@ export const Dialogs = (props:PropsType) => {
             </div>
             <div className={s.messages}>
 
-                {props.messageData.map((m, ) =>
-                    <MessageItem id={m.id}  message={m.message}/>)}
-                <textarea ref={newMessage}/>
+                {props.messageData.map((m,) =>
+                    <MessageItem id={m.id} message={m.message}/>)}
+                <textarea
+                    ref={newMessage}
+                    value={props.newMessageText}
+                onChange={onChangeHandler}
+                />
                 <button onClick={sendMessage}>send mess</button>
             </div>
         </div>
