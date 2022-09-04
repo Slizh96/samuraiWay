@@ -4,7 +4,8 @@ import {PostDataType} from "../components/Profile/MyPosts/MyPosts";
 
 export type StateType = {
     profilePage: profilePageType,
-    messagePage: MessagePageType
+    messagePage: MessagePageType,
+    friendsBlock: friendsBlockType[]
 }
 type profilePageType = {
     post: PostDataType[]
@@ -12,6 +13,10 @@ type profilePageType = {
 type MessagePageType = {
     message: MessageItemPropsType[],
     dialog: DialogsItemPropsType[]
+}
+export  type friendsBlockType = {
+    src: string
+    name: string
 }
 
 export let state: StateType = {
@@ -41,7 +46,11 @@ export let state: StateType = {
             {id: 5, name: 'Max'},
             {id: 6, name: 'Tim'},
         ]
-
-    }
+    },
+    friendsBlock: [
+        {src: 'https://mir-avatarok.3dn.ru/_si/0/03342719.jpg', name: 'Roni'},
+        {src: 'https://mir-avatarok.3dn.ru/_si/0/03342719.jpg', name: 'Bin'},
+        {src: 'https://mir-avatarok.3dn.ru/_si/0/03342719.jpg', name: 'Tom'},
+    ]
 }
 

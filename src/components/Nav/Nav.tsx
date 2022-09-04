@@ -1,8 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import s from './Nav.module.css'
+import {Friends} from "./Friends/Friends";
+import {friendsBlockType} from "../../redux/state";
 
-export const Nav = () => {
+type NavPropsType={
+    friendsBlock: friendsBlockType[]
+}
+
+export const Nav = (props:NavPropsType) => {
     return (
         <nav className={s.nav}>
             <div className={`${s.item} ${s.active}`}>
@@ -19,6 +25,9 @@ export const Nav = () => {
             </div>
             <div className={s.item}>
                 <NavLink to='/settings' activeClassName={s.active}>Settings</NavLink>
+            </div>
+            <div className={s.item}>
+                <Friends friendsBlock={props.friendsBlock}/>
             </div>
         </nav>
     )

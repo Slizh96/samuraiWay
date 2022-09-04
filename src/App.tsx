@@ -20,7 +20,7 @@ function App(props: PropsType) {
         <BrowserRouter >
             <div className="appWrapper">
                 <Header/>
-                <Nav/>
+                <Nav friendsBlock={props.state.friendsBlock}/>
                 <div className='appWrapperContent'>
                     {/*<Route path='/dialogs' component={Dialogs}/>*/}
                     {/*<Route path='/profile' component={Profile}/>*/}

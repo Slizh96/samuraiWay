@@ -1,0 +1,19 @@
+.friends{
+    margin: 100px auto 20px auto;
+
+}
+
+.friendsItem{
+    display: flex;
+}
+
+.friendsItem img{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin: auto 1px;
+}
+
+.friendsItem div{
+    text-align: center;
+}
