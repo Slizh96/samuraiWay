@@ -5,13 +5,17 @@ import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 
 type PropsTypeProfile={
     postData:PostDataType[]
+    addPost: (postMessage: string) =>void
 }
 
 export const Profile = (props:PropsTypeProfile) => {
     return (
         <div className={s.content}>
             <ProfileInfo/>
-            <MyPosts postData={props.postData}/>
+            <MyPosts
+                postData={props.postData}
+            addPost={props.addPost}
+            />
         </div>
     )
 }

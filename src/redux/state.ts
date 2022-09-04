@@ -1,6 +1,7 @@
 import {DialogsItemPropsType} from "../components/Dialogs/DialogItem/DialogItem";
 import {MessageItemPropsType} from "../components/Dialogs/Message/Message";
 import {PostDataType} from "../components/Profile/MyPosts/MyPosts";
+import {rerenderEntireTree} from "../rerender";
 
 export type StateType = {
     profilePage: profilePageType,
@@ -54,3 +55,12 @@ export let state: StateType = {
     ]
 }
 
+export let addPost = (postMessage: string) => {
+    let newPost: PostDataType = {
+        post: postMessage,
+        like: 25,
+        id: 1
+    };
+    state.profilePage.post.push(newPost)
+    rerenderEntireTree(state);
+}
