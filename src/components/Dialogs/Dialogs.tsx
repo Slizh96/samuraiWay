@@ -10,6 +10,14 @@ type PropsType = {
 
 export const Dialogs = (props:PropsType) => {
 
+    let newMessage:any=React.createRef();
+
+    let sendMessage=()=>{
+        let messageText=newMessage.current.value;
+        alert(messageText)
+    }
+
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
@@ -20,6 +28,8 @@ export const Dialogs = (props:PropsType) => {
 
                 {props.messageData.map((m, ) =>
                     <MessageItem id={m.id}  message={m.message}/>)}
+                <textarea ref={newMessage}/>
+                <button onClick={sendMessage}>send mess</button>
             </div>
         </div>
     )

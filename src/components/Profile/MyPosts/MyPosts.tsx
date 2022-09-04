@@ -12,14 +12,21 @@ type MyPostsPropsType = {
 }
 export const MyPosts = (props: MyPostsPropsType) => {
 
+    let newPostElement:any=React.createRef()
+
+    let addPost=()=>{
+        let text =newPostElement.current.value;
+        alert(text)
+    }
+
     return (
         <div>
             <h3>My posts</h3>
 
             <div>
-                <textarea value='Write new post'/>
+                <textarea  ref={newPostElement}/>
                 <div>
-                    <button>Add</button>
+                    <button onClick={addPost}>Add</button>
                 </div>
             </div>
             {props.postData.map((p: PostDataType) => <Post post={p.post} like={p.like} id={p.id}/>)}
