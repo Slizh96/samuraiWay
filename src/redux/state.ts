@@ -2,7 +2,7 @@ import {DialogsItemPropsType} from "../components/Dialogs/DialogItem/DialogItem"
 import {MessageItemPropsType} from "../components/Dialogs/Message/Message";
 import {PostDataType} from "../components/Profile/MyPosts/MyPosts";
 
-let rerenderEntireTree=()=>{ console.log()}
+let rerenderEntireTree=(state:StateType)=>{ console.log()}
 
 export type StateType = {
     profilePage: profilePageType,
