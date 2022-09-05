@@ -9,20 +9,19 @@ export type PostDataType = {
 
 type MyPostsPropsType = {
     postData: PostDataType[]
-    addPost: () => void
-    updatePostText: (newPostText: string) => void
-    newPostText:string
+    dispatch: (action: any) => void
+    newPostText: string
 }
 export const MyPosts = (props: MyPostsPropsType) => {
 
-    let newPostElement: any = React.createRef()
+    let newPostElement:any = React.createRef()
 
     let addPostHandler = () => {
-        props.addPost();
+        props.dispatch({type: 'ADD-POST'});
     }
 
-    let onPostChange=()=>{
-        props.updatePostText(newPostElement.current.value)
+    let onPostChange = () => {
+        props.dispatch({type: 'UPDATE-POST-TEXT', newPostText: newPostElement.current.value})
     }
 
     return (

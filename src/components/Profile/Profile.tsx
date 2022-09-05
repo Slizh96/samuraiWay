@@ -5,8 +5,7 @@ import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 
 type PropsTypeProfile = {
     postData: PostDataType[]
-    addPost: () => void
-    updatePostText: (newPostText: string) => void
+    dispatch:(action:{type:string, newPostText?:string, newMessageText?:string})=>void
     newPostText:string
 }
 
@@ -16,9 +15,8 @@ export const Profile = (props: PropsTypeProfile) => {
             <ProfileInfo/>
             <MyPosts
                 postData={props.postData}
-                addPost={props.addPost}
+                dispatch={props.dispatch}
                 newPostText={props.newPostText}
-                updatePostText={props.updatePostText}
             />
         </div>
     )

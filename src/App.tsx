@@ -13,10 +13,11 @@ import {StateType} from "./redux/state";
 
 export type PropsType = {
     state: StateType
-    addPost: () =>void
-    updatePostText: (newPostText:string)=>void
-    addMessage: () =>void
-    updateMessageText: (newMessageText:string)=>void
+    dispatch:(action:{type:string, newPostText?:string, newMessageText?:string})=>void
+    // addPost: () =>void
+    // updatePostText: (newPostText:string)=>void
+    // addMessage: () =>void
+    // updateMessageText: (newMessageText:string)=>void
 }
 
 function App(props: PropsType) {
@@ -31,14 +32,12 @@ function App(props: PropsType) {
                     dialogsData={props.state.messagePage.dialog}
                     messageData={props.state.messagePage.message}
                     newMessageText={props.state.messagePage.mewMessageText}
-                    addMessage={props.addMessage}
-                    updateMessageText={props.updateMessageText}
+                    dispatch={props.dispatch}
                 />}/>
                 <Route path='/profile' render={() => <Profile
                     postData={props.state.profilePage.post}
                     newPostText={props.state.profilePage.newPostText}
-                    addPost={props.addPost}
-                    updatePostText={props.updatePostText}
+                    dispatch={props.dispatch}
                 />}/>
                 <Route path='/news' component={News}/>
                 <Route path='/music' component={Music}/>

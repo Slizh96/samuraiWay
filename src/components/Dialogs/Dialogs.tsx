@@ -7,8 +7,7 @@ type PropsType = {
     dialogsData: Array<DialogsItemPropsType>
     messageData: Array<MessageItemPropsType>
     newMessageText: string
-    addMessage: () => void
-    updateMessageText: (newMessageText: string) => void
+    dispatch:(action:{type:string, newPostText?:string, newMessageText?:string})=>void
 }
 
 export const Dialogs = (props: PropsType) => {
@@ -16,11 +15,11 @@ export const Dialogs = (props: PropsType) => {
     let newMessage: any = React.createRef();
 
     let sendMessage = () => {
-        props.addMessage()
+        props.dispatch({type:'ADD-MESSAGE'})
     }
 
     let onChangeHandler = ()=>{
-        props.updateMessageText(newMessage.current.value)
+        props.dispatch({type:'UPDATE-MESSAGE-TEXT', newMessageText:newMessage.current.value})
     }
 
     return (

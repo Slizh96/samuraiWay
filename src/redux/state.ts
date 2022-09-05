@@ -4,15 +4,11 @@ import {PostDataType} from "../components/Profile/MyPosts/MyPosts";
 
 export  type StoreType = {
     _state: StateType
-    getState:any
+    getState: any
     _callSubscriber: (state: StateType) => void
-    addPost: () => void
-    updatePostText: (newPostText: string) => void
-    addMessage: () => void
-    updateMessageText: (newMessageText: string) => void
-    subscribe:  (observer: (state: StateType) => void) =>void
+    subscribe: (observer: (state: StateType) => void) => void
+    dispatch: (action: any) => void
 }
-
 
 export let store: StoreType = {
     _state: {
@@ -51,41 +47,50 @@ export let store: StoreType = {
             {src: 'https://mir-avatarok.3dn.ru/_si/0/03342719.jpg', name: 'Tom'},
         ]
     },
-    getState () {
-        return this._state;
-    },
-    _callSubscriber (state: StateType) {
+    _callSubscriber(state: StateType) {
         console.log()
     },
-    addPost() {
-        let newPost: PostDataType = {
-            post: this._state.profilePage.newPostText,
-            like: 25,
-            id: 1
-        };
-        this._state.profilePage.post.push(newPost)
-        this._state.profilePage.newPostText = '';
-        this._callSubscriber(this._state);
+
+    getState() {
+        return this._state;
     },
-    updatePostText(newPostText: string) {
-        this._state.profilePage.newPostText = newPostText
-        this._callSubscriber(this._state);
-    },
-    addMessage() {
-        let newMessage: MessageItemPropsType = {
-            message: this._state.messagePage.mewMessageText,
-            id: 1
-        };
-        this._state.messagePage.message.push(newMessage)
-        this._state.messagePage.mewMessageText = '';
-        this._callSubscriber(this._state);
-    },
-    updateMessageText(newMessageText: string) {
-        this._state.messagePage.mewMessageText = newMessageText
-        this._callSubscriber(this._state);
-    },
-    subscribe  (observer: (state: StateType) => void)  {
+    subscribe(observer: (state: StateType) => void) {
         this._callSubscriber = observer
+    },
+
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            {
+                let newPost: PostDataType = {
+                    post: this._state.profilePage.newPostText,
+                    like: 25,
+                    id: 1
+                };
+                this._state.profilePage.post.push(newPost)
+                this._state.profilePage.newPostText = '';
+                this._callSubscriber(this._state);
+            }
+        } else if (action.type === 'UPDATE-POST-TEXT') {
+            {
+                this._state.profilePage.newPostText = action.newPostText
+                this._callSubscriber(this._state);
+            }
+        } else if (action.type === 'ADD-MESSAGE') {
+            {
+                let newMessage: MessageItemPropsType = {
+                    message: this._state.messagePage.mewMessageText,
+                    id: 1
+                };
+                this._state.messagePage.message.push(newMessage)
+                this._state.messagePage.mewMessageText = '';
+                this._callSubscriber(this._state);
+            }
+        } else if (action.type === 'UPDATE-MESSAGE-TEXT') {
+            {
+                this._state.messagePage.mewMessageText = action.newMessageText
+                this._callSubscriber(this._state);
+            }
+        }
     }
 }
 
