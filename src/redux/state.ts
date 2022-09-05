@@ -1,7 +1,8 @@
 import {DialogsItemPropsType} from "../components/Dialogs/DialogItem/DialogItem";
 import {MessageItemPropsType} from "../components/Dialogs/Message/Message";
 import {PostDataType} from "../components/Profile/MyPosts/MyPosts";
-import {rerenderEntireTree} from "../rerender";
+
+let rerenderEntireTree=()=>{ console.log()}
 
 export type StateType = {
     profilePage: profilePageType,
@@ -91,4 +92,8 @@ export let updateMessageText = (newMessageText: string) => {
     state.messagePage.mewMessageText = newMessageText
     rerenderEntireTree(state);
     // newMessageText = ''
+}
+
+export const subscribe =(observer:(state:StateType)=>void)=>{
+rerenderEntireTree=observer
 }
