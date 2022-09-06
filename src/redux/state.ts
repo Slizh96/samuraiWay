@@ -9,7 +9,24 @@ export  type StoreType = {
     subscribe: (observer: (state: StateType) => void) => void
     dispatch: (action: any) => void
 }
-
+export type StateType = {
+    profilePage: profilePageType,
+    messagePage: MessagePageType,
+    friendsBlock: friendsBlockType[]
+}
+type profilePageType = {
+    post: PostDataType[]
+    newPostText: string
+}
+type MessagePageType = {
+    message: MessageItemPropsType[],
+    dialog: DialogsItemPropsType[],
+    mewMessageText: string
+}
+export  type friendsBlockType = {
+    src: string
+    name: string
+}
 export let store: StoreType = {
     _state: {
         profilePage: {
@@ -94,22 +111,27 @@ export let store: StoreType = {
     }
 }
 
-export type StateType = {
-    profilePage: profilePageType,
-    messagePage: MessagePageType,
-    friendsBlock: friendsBlockType[]
-}
-type profilePageType = {
-    post: PostDataType[]
-    newPostText: string
-}
-type MessagePageType = {
-    message: MessageItemPropsType[],
-    dialog: DialogsItemPropsType[],
-    mewMessageText: string
-}
-export  type friendsBlockType = {
-    src: string
-    name: string
+export const addPostAC=()=>{
+    return {
+        type:'ADD-POST'
+    }
 }
 
+export const updateNewPostTextAC =(text:string)=>{
+    return {
+        type: 'UPDATE-POST-TEXT',
+        newPostText: text
+    }
+}
+export const addMessageAC=()=>{
+    return {
+        type:'ADD-MESSAGE'
+    }
+}
+
+export const updateNewMessageTextAC =(text:string)=>{
+    return {
+        type: 'UPDATE-MESSAGE-TEXT',
+        newMessageText: text
+    }
+}
