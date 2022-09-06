@@ -1,6 +1,6 @@
 import React from "react";
 import {Post} from "./Post/Post";
-import {addPostAC, updateNewPostTextAC} from "../../../redux/state";
+import {addPostAC, updateNewPostTextAC} from "../../../redux/profileReducer";
 
 export type PostDataType = {
     post: string

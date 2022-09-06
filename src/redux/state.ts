@@ -1,6 +1,9 @@
 import {DialogsItemPropsType} from "../components/Dialogs/DialogItem/DialogItem";
 import {MessageItemPropsType} from "../components/Dialogs/Message/Message";
 import {PostDataType} from "../components/Profile/MyPosts/MyPosts";
+import {profileReducer} from "./profileReducer";
+import {messageReducer} from "./messageReducer";
+import {friendsReducer} from "./friendsReducer";
 
 export  type StoreType = {
     _state: StateType
@@ -76,62 +79,13 @@ export let store: StoreType = {
     },
 
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            {
-                let newPost: PostDataType = {
-                    post: this._state.profilePage.newPostText,
-                    like: 25,
-                    id: 1
-                };
-                this._state.profilePage.post.push(newPost)
-                this._state.profilePage.newPostText = '';
-                this._callSubscriber(this._state);
-            }
-        } else if (action.type === 'UPDATE-POST-TEXT') {
-            {
-                this._state.profilePage.newPostText = action.newPostText
-                this._callSubscriber(this._state);
-            }
-        } else if (action.type === 'ADD-MESSAGE') {
-            {
-                let newMessage: MessageItemPropsType = {
-                    message: this._state.messagePage.mewMessageText,
-                    id: 1
-                };
-                this._state.messagePage.message.push(newMessage)
-                this._state.messagePage.mewMessageText = '';
-                this._callSubscriber(this._state);
-            }
-        } else if (action.type === 'UPDATE-MESSAGE-TEXT') {
-            {
-                this._state.messagePage.mewMessageText = action.newMessageText
-                this._callSubscriber(this._state);
-            }
-        }
+
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.messagePage = messageReducer(this._state.messagePage, action);
+        this._state.friendsBlock = friendsReducer(this._state.friendsBlock, action);
+
+        this._callSubscriber(this._state);
+
     }
 }
 
-export const addPostAC=()=>{
-    return {
-        type:'ADD-POST'
-    }
-}
-
-export const updateNewPostTextAC =(text:string)=>{
-    return {
-        type: 'UPDATE-POST-TEXT',
-        newPostText: text
-    }
-}
-export const addMessageAC=()=>{
-    return {
-        type:'ADD-MESSAGE'
-    }
-}
-
-export const updateNewMessageTextAC =(text:string)=>{
-    return {
-        type: 'UPDATE-MESSAGE-TEXT',
-        newMessageText: text
-    }
-}
