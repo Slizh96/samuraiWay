@@ -2,10 +2,10 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import s from './Nav.module.css'
 import {Friends} from "./Friends/Friends";
-import {friendsBlockType} from "../../redux/state";
+import {FriendsBlockType} from "../../redux/store";
 
 type NavPropsType={
-    friendsBlock: friendsBlockType[]
+    friendsBlock: FriendsBlockType[]
 }
 
 export const Nav = (props:NavPropsType) => {

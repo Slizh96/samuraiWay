@@ -13,20 +13,20 @@ export  type StoreType = {
     dispatch: (action: any) => void
 }
 export type StateType = {
-    profilePage: profilePageType,
+    profilePage: ProfilePageType,
     messagePage: MessagePageType,
-    friendsBlock: friendsBlockType[]
+    friendsBlock: FriendsBlockType[]
 }
-type profilePageType = {
+export type ProfilePageType = {
     post: PostDataType[]
     newPostText: string
 }
-type MessagePageType = {
+export type MessagePageType = {
     message: MessageItemPropsType[],
     dialog: DialogsItemPropsType[],
     mewMessageText: string
 }
-export  type friendsBlockType = {
+export  type FriendsBlockType = {
     src: string
     name: string
 }

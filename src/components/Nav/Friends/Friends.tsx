@@ -1,9 +1,9 @@
 import React from "react";
 import s from './Friends.module.css'
-import {friendsBlockType} from "../../../redux/state";
+import {FriendsBlockType} from "../../../redux/store";
 
 type FriendsPropsType = {
-    friendsBlock: friendsBlockType[]
+    friendsBlock: FriendsBlockType[]
 }
 
 export const Friends = (props: FriendsPropsType) => {
