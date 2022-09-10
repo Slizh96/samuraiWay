@@ -1,6 +1,5 @@
 import React from "react";
 import {Post} from "./Post/Post";
-import {addPostAC, updateNewPostTextAC} from "../../../redux/profileReducer";
 
 export type PostDataType = {
     post: string
@@ -9,8 +8,9 @@ export type PostDataType = {
 }
 
 type MyPostsPropsType = {
-    postData: PostDataType[]
-    dispatch: (action: any) => void
+    posts: PostDataType[]
+    addPost: ()=>void
+    updateNewPostText:(text:string)=>void
     newPostText: string
 }
 
@@ -19,12 +19,12 @@ export const MyPosts = (props: MyPostsPropsType) => {
     let newPostElement:any = React.createRef()
 
     let addPostHandler = () => {
-        props.dispatch(addPostAC());
+        props.addPost();
     }
 
     let onPostChange = () => {
         let text=newPostElement.current.value
-        props.dispatch(updateNewPostTextAC(text))
+        props.updateNewPostText(text)
     }
 
     return (
@@ -41,7 +41,7 @@ export const MyPosts = (props: MyPostsPropsType) => {
                     <button onClick={addPostHandler}>Add</button>
                 </div>
             </div>
-            {props.postData.map((p: PostDataType) => <Post post={p.post} like={p.like} id={p.id}/>)}
+            {props.posts.map((p: PostDataType) => <Post post={p.post} like={p.like} id={p.id}/>)}
 
         </div>
 

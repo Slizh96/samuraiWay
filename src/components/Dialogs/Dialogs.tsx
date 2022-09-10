@@ -1,43 +1,39 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import s from './Dialogs.module.css'
-import {DialogItem, DialogsItemPropsType} from "./DialogItem/DialogItem";
-import {MessageItem, MessageItemPropsType} from "./Message/Message";
-import {addMessageAC, updateNewMessageTextAC} from "../../redux/messageReducer";
+import {DialogItem} from "./DialogItem/DialogItem";
+import {MessageItem} from "./Message/Message";
+import {MessagePageType} from "../../redux/store";
 
 type PropsType = {
-    dialogsData: Array<DialogsItemPropsType>
-    messageData: Array<MessageItemPropsType>
-    newMessageText: string
-    dispatch:(action:{type:string, newPostText?:string, newMessageText?:string})=>void
+    updateNewMessageText: (text: string) => void
+    sendMessage: () => void
+    messagePage: MessagePageType
 }
 
 export const Dialogs = (props: PropsType) => {
 
-    let newMessage: any = React.createRef();
-
     let sendMessage = () => {
-        props.dispatch(addMessageAC())
+        props.sendMessage()
     }
 
-    let onChangeHandler = ()=>{
-        let text=newMessage.current.value
-        props.dispatch(updateNewMessageTextAC(text))
+    let onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        let text = e.currentTarget.value
+        props.updateNewMessageText(text);
     }
 
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                {props.dialogsData.map((d) =>
+                {props.messagePage.dialog.map((d) =>
                     <DialogItem id={d.id} name={d.name}/>)}
             </div>
             <div className={s.messages}>
 
-                {props.messageData.map((m,) =>
+                {props.messagePage.message.map((m,) =>
                     <MessageItem id={m.id} message={m.message}/>)}
                 <textarea
-                    ref={newMessage}
-                    value={props.newMessageText}
-                onChange={onChangeHandler}
+                    value={props.messagePage.mewMessageText}
+                    onChange={onChangeHandler}
                 />
                 <button onClick={sendMessage}>send mess</button>
             </div>
