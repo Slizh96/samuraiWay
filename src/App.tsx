@@ -13,8 +13,8 @@ import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 
 export type PropsType = {
     state: StateType
-    dispatch:(action:{type:string, newPostText?:string, newMessageText?:string})=>void
-    store: any
+    // dispatch:(action:{type:string, newPostText?:string, newMessageText?:string})=>void
+    // store: any
     // addPost: () =>void
     // updatePostText: (newPostText:string)=>void
     // addMessage: () =>void
@@ -30,14 +30,14 @@ function App(props: PropsType) {
                 {/*<Route path='/dialogs' component={Dialogs}/>*/}
                 {/*<Route path='/profile' component={Profile}/>*/}
                 <Route path='/dialogs' render={() => <DialogsContainer
-                    store={props.store}
+                    // store={props.store}
                     // dialogsData={props.state.messagePage.dialog}
                     // messageData={props.state.messagePage.message}
                     // newMessageText={props.state.messagePage.mewMessageText}
                     // dispatch={props.dispatch}
                 />}/>
                 <Route path='/profile' render={() => <Profile
-                    store={props.store}
+                    // store={props.store}
                     // postData={props.state.profilePage.post}
                     // newPostText={props.state.profilePage.newPostText}
                     // dispatch={props.dispatch}
