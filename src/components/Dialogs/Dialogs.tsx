@@ -25,12 +25,12 @@ export const Dialogs = (props: PropsType) => {
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
                 {props.messagePage.dialog.map((d) =>
-                    <DialogItem id={d.id} name={d.name}/>)}
+                    <DialogItem key={d.id} id={d.id} name={d.name}/>)}
             </div>
             <div className={s.messages}>
 
                 {props.messagePage.message.map((m,) =>
-                    <MessageItem id={m.id} message={m.message}/>)}
+                    <MessageItem key={m.id} id={m.id} message={m.message}/>)}
                 <textarea
                     value={props.messagePage.mewMessageText}
                     onChange={onChangeHandler}

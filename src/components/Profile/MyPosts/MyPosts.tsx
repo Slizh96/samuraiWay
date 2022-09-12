@@ -41,7 +41,7 @@ export const MyPosts = (props: MyPostsPropsType) => {
                     <button onClick={addPostHandler}>Add</button>
                 </div>
             </div>
-            {props.posts.map((p: PostDataType) => <Post post={p.post} like={p.like} id={p.id}/>)}
+            {props.posts.map((p: PostDataType) => <Post key={p.id} post={p.post} like={p.like} id={p.id}/>)}
 
         </div>
 
