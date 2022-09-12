@@ -1,7 +1,7 @@
 import {MessageItemPropsType} from "../components/Dialogs/Message/Message";
 import {MessagePageType} from "./store";
 
-let initialState:MessagePageType={
+let initialState: MessagePageType = {
     message: [
         {id: 1, message: 'Hello'},
         {id: 2, message: 'How are you'},
@@ -21,20 +21,24 @@ let initialState:MessagePageType={
     mewMessageText: ''
 }
 
-export const messageReducer = (state=initialState, action: any) => {
+export const messageReducer = (state = initialState, action: any) => {
     switch (action.type) {
-        case 'ADD-MESSAGE':
+        case 'ADD-MESSAGE': {
             let newMessage: MessageItemPropsType = {
                 message: state.mewMessageText,
                 id: 1
             };
-            state.message.push(newMessage)
-            state.mewMessageText = '';
-            return state;
-        case 'UPDATE-MESSAGE-TEXT':
-
-            state.mewMessageText = action.newMessageText
-            return state;
+            let stateCopy = {...state};
+            stateCopy.message = [...state.message];
+            stateCopy.message.push(newMessage)
+            stateCopy.mewMessageText = '';
+            return stateCopy;
+        }
+        case 'UPDATE-MESSAGE-TEXT': {
+            let stateCopy = {...state};
+            stateCopy.mewMessageText = action.newMessageText
+            return stateCopy;
+        }
         default:
             return state
     }
