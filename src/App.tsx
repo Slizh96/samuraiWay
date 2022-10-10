@@ -10,6 +10,7 @@ import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
 import {StateType} from "./redux/store";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 
 export type PropsType = {
     state: StateType
@@ -45,6 +46,7 @@ function App(props: PropsType) {
                 <Route path='/news' component={News}/>
                 <Route path='/music' component={Music}/>
                 <Route path='/settings' component={Settings}/>
+                <Route path='/users' component={UsersContainer}/>
             </div>
         </div>
     );
