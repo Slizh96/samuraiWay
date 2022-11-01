@@ -1,6 +1,8 @@
 import React from "react";
 import s from './Users.module.css'
 import {usersType} from "../../redux/usersReducer";
+import axios from "axios";
+import avatar from '../../assets/images/avatar.jpg'
 
 type UsersPropsType = {
     users: usersType[],
@@ -11,30 +13,14 @@ type UsersPropsType = {
 
 export const Users = (props: UsersPropsType) => {
    if (props.users.length===0){
-       props.setUsers([{
-           id: 1,
-           followed: false,
-           fullName: 'Olga',
-           status: 'Hello. This is my first status',
-           photoUrl: 'https://klike.net/uploads/posts/2019-03/medium/1551512888_2.jpg',
-           location: {city: 'Minsk', country: 'Belarus'}
-       },
-           {
-               id: 2,
-               followed: true,
-               fullName: 'Ben',
-               status: 'it is great',
-               photoUrl: 'https://klike.net/uploads/posts/2019-03/medium/1551512888_2.jpg',
-               location: {city: 'Brest', country: 'Belarus'}
-           },
-           {
-               id: 3,
-               followed: false,
-               fullName: 'Tom',
-               status: 'i like it',
-               photoUrl: 'https://klike.net/uploads/posts/2019-03/medium/1551512888_2.jpg',
-               location: {city: 'London', country: 'The United Kingdom'}
-           },])
+
+       axios.get('https://social-network.samuraijs.com/api/1.0/users')
+           .then(response=>{
+               // debugger;
+               props.setUsers(response.data.items)
+           });
+
+
    }
 
 
@@ -43,7 +29,7 @@ export const Users = (props: UsersPropsType) => {
             {props.users.map(u => <div key={u.id}>
                     <span>
                         <div>
-                            <img src={u.photoUrl} alt=''/>
+                            <img src={u.photos.small != null ? u.photos.small : avatar} alt='avatar'/>
                         </div>
                         <div>
                             {u.followed
@@ -53,12 +39,12 @@ export const Users = (props: UsersPropsType) => {
                     </span>
                     <span>
                         <span>
-                            <div>{u.fullName}</div>
+                            <div>{u.name}</div>
                             <div>{u.status}</div>
                         </span>
                         <span>
-                            <div>{u.location.country}</div>
-                            <div>{u.location.city}</div>
+                            <div>{'u.location.country'}</div>
+                            <div>{'u.location.city'}</div>
                         </span>
                     </span>
                 </div>

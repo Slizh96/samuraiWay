@@ -1,13 +1,16 @@
 export type usersType = {
     id: number,
     followed: boolean,
-    fullName: string,
+    name: string,
     status: string,
-    photoUrl:string,
-    location: {
-        city: string,
-        country: string
-    }
+    photos:{
+        small:string,
+        large:string
+    },
+    // location: {
+    //     city: string,
+    //     country: string
+    // }
 }
 
 type initialStateType = {
